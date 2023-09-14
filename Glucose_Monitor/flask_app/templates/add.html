@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action='/reading/create', method="post">
+        <h1>Add your Glucose Reading and Meal</h1>
+            <p><a href="/dashboard">Go back to Your Logs!</a></p>
+        {% with messages = get_flashed_messages(category_filter=['create']) %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+            <input type="hidden" name="user_id" value="{{user}}">
+        <div>
+        <label for="">Date:</label>
+        <input type="date" name="date" value="date" >
+        </div>
+        <div>
+        <label for="time">Time of Reading:</label>
+        <input type="time" name="time" placeholder="What time is this reading?" >
+        </div>
+        <label for="glucose">Glucose Reading:</label>
+        <input type="number" name="glucose" id="glucose">
+        </div>
+        <div>
+            <label for="mealtype">Type of Meal</label>
+            <select name="mealtype" id="mealtype">
+            <option value="">--select one--</option>
+            <option value="">Fasting Reading</option>
+            <option value="my glucose">My Glucose</option>
+            <option value="Snack">Snack</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            </select>
+        </div>
+        <div>
+        <label for="log_meal">Log Meal:</label>
+        <div>
+        <textarea type="text" name="log_meal" value="log_meal"></textarea>
+        </div>
+        </div>
+        <input type="Submit"></button>
+        <a href="/logout">Logout</a>
+    </form>
+</body>
+</html>

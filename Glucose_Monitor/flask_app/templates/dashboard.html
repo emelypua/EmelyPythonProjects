@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glucose Reading and Meal Log</title>
+</head>
+<body>
+    <body class="col-7 mx-auto">
+        <h1>Welcome, {{user.first_name}} {{user.last_name}}</h1>
+        <h2 class="text-primary text-center">My Glucose Reading and Meal Logs!</h2>
+        <table class="table table-bordered">
+            <thead class="table table-hover table-info">
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Glucose</th>
+                    <th>Meal Type</th>
+                    <th>Log Meal</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for a in one_reading %}
+                <tr class="table-secondary">
+                    <td> {{a.date.strftime('%B %dth, %Y')}} </td>
+                    <td> {{a.time}} </td>
+                    <td> {{a.glucose}} </td>
+                    <td> {{a.mealtype}} </td>
+                    <td> {{a.log_meal}} </td>
+                    {% if session['id'] == a.user_id %}
+                    <td>
+                        <a class="text-warning"href="/show/reading/{{a.id}}">Show |</a>
+                        <a href="/edit/reading/{{a.id}}">Edit |</a>
+                        <form action="/destroy/{{a.id}}" method="post">
+                            <input type="hidden" name="id" value="{{a.id}}">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                    {% endif %}
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+        <a class="text-danger" href="/new/reading">Add a new reading</a>
+</body>
+</html>

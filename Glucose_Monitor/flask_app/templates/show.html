@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Reading</title>
+</head>
+<body>
+    <div class="card navbar">
+        <h1>My logged glucose reading and meal log:</h1><a href="/dashboard">Go back to Glucose Readings</a>
+        <h1>Welcome, {{user.first_name}} {{user.last_name}}</h1>
+        <h2>Date of my reading:{{c.date.strftime('%B %dth, %Y')}}</h2>
+        <p>Time of reading:{{c.time}}</p>
+        <p>Logged Meal:</p> 
+        <p>{{c.log_meal}}</p>
+        <p>Glucose Reading: {{c.glucose}}</p>
+        <p>By: {{c.patient.first_name}} {{c.patient.last_name}}</p>
+        <a href="/logout">Logout</a>
+        </div>
+</body>
+</html>

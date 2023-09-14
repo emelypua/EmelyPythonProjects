@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <form action='/update', method="post">
+        <h1>Edit My Glucose Reading and Meal</h1>
+            <p><a href="/dashboard">Go back to Your Logs!</a></p>
+        {% with messages = get_flashed_messages(category_filter=['create']) %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+            <input type="hidden" name="id" value="{{b.id}}">
+            <input type="hidden" name="user_id" value="{{b.user_id}}">
+        <div>
+        <label for="">Date:</label>
+        <input type="date" name="date" placeholder="{{b.date}}" >
+        </div>
+        <div>
+        <label for="time">Time of Reading:</label>
+        <input type="time" name="time" value="{{b.time}}" >
+        </div>
+        <label for="glucose">Glucose Reading:</label>
+        <input type="number" name="glucose" id="glucose" value="{{b.glucose}}">
+        </div>
+        <div>
+            <label for="mealtype">Type of Meal</label>
+                <select name="mealtype" id="mealtype">
+                    <option value="">--select one--</option>
+                    <option value="">Fasting Reading</option>
+                    <option value="my glucose">My Glucose</option>
+                    <option value="Snack">Snack</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Dinner">Dinner</option>
+                </select>
+        </div>
+        <div>
+        <label for="log_meal">Log Meal:</label>
+        <div>
+        <textarea type="text" name="log_meal" placeholder="{{b.log_meal}}"></textarea>
+        </div>
+        </div>
+    <input type="Submit"></button>
+        <a href="/logout">Logout</a>
+    </form>
+</body>
+</html>
